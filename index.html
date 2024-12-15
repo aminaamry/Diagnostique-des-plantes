@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9RK6gO7WYiinh5MbPYjD3ZIkjTr_GJ05CzA&s">
+    <title>Diagnostique des Plantes</title>
+    <!-- Import des styles pour améliorer les listes déroulantes avec Select2 et afficher des icônes Material Design -->
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+       /* Réinitialise le style de base et applique la police 'Poppins' à tous les éléments */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Style pour le corps */
+
+        body {
+            background: linear-gradient(to bottom, #e8f5e9, #d0f0c0);
+            color: #4caf50;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        /* Style pour l'en-tête */
+
+        .header {
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            position: relative;
+        }
+
+        /* Style pour le titre de l'en-tête */
+
+        header h1 {
+            font-size: 3.8em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* Styles pour la navigation */
+        .nav-list ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.2em;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .nav-list a:hover {
+            color: #81c784;
+        }
+
+        /* Contenu Main */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        p {
+            font-size: 1.4em;
+            font-weight: 300;
+            margin-top: 10px;
+            color: #309b05;
+        }
+
+        footer p {
+            color: white;
+            margin: 0;
+        }
+
+        /* Image Container */
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 280px;
+            height: auto;
+            border: 4px solid #81c784;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Form Styles */
+        form {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: #81c784;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2e7d32;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        select {
+            width: 100%;
+            max-width: 450px;
+            padding: 0.8rem;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+            background-color: #e8f5e9;
+            color: #388e3c;
+            font-size: 1rem;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #388e3c;
+            box-shadow: 0 0 10px rgba(72, 189, 93, 0.6);
+        }
+
+        button {
+            padding: 1rem 2rem;
+            background-color: #4caf50;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Results Section */
+        #result {
+            padding: 1.5rem;
+            border: 2px dashed #81c784;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #result h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #388e3c;
+            margin-bottom: 1rem;
+        }
+
+        #result p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #4caf50;
+            color: white;
+            padding: 1rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Loader Style */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4caf50;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Diagnostique des Plantes</h1>
+        <nav class="nav-list">
+            <ul>
+                <li><a href="aboutus.html">Qui sommes-nous ?</a></li>
+                <li><a href="actualite.html">Actualités</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section de l'introduction -->
+        <section>
+            <p>
+                Ce site permet de faire le diagnostic pour les plantes. En 4 clics seulement, vous allez pouvoir
+                identifier les maladies de vos plantes, et obtenir des conseils simples et pratiques pour vous
+                aider à les soigner.
+            </p>
+            <div class="image-container">
+                <img src="https://images.pexels.com/photos/22610757/pexels-photo-22610757/free-photo-of-main-cactus-croissance-plante-en-pot.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Plantes">
+                <img src="https://images.pexels.com/photos/20714977/pexels-photo-20714977/free-photo-of-agriculture-herbe-centrale-plante.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Céréales">
+                <img src="https://images.pexels.com/photos/1729195/pexels-photo-1729195.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Culture">
+            </div>
+        </section>
+
+        <!-- Section de la diagnostique-->
+        <section>
+            <h2>Débuter le diagnostic</h2>
+            <!-- Formulaire pour sélectionner plusieurs types de céréales -->
+            <!-- Formulaire multi-sélection des options de céréales -->
+            <form id="diagnostic-form">
+                <label for="plante">Choisir des céréales :</label>
+                <select id="plante" name="plante" multiple="multiple">
+                    <option value="blé">Blé</option>
+                    <option value="orge">Orge</option>
+                    <option value="avoine">Avoine</option>
+                    <option value="maïs">Maïs</option>
+                    <option value="cereales">Céréales</option>
+                    <option value="seigle">Seigle</option>
+                    <option value="bletendre">Blé Tendre</option>
+
+                </select>
+                <!-- Formulaire pour sélectionner plusieurs types des organes -->
+                <!-- Formulaire multi-sélection des options des organes -->
+
+                <label for="organe">Choisir des organes affectés :</label>
+                <select id="organe" name="organe" multiple="multiple">
+                    <option value="grain">Grain</option>
+                    <option value="épi">Épi</option>
+                    <option value="panicule">Panicule</option>
+                    <option value="tiges">Tiges</option>
+                    <option value="racine">Racine</option>
+                    <option value="feuilles">Feuille</option>
+                    <option value="plantules">Plantules</option>
+                    <option value="glumes">Glumes</option>
+                    <option value="basedetiges">Base de tiges</option>
+                </select>
+
+        <!-- Bouton pour lancer le diagnostique -->
+
+                <button type="button" id="submit-btn">Diagnostiquer</button>
+            </form>
+        </section>
+
+        <!-- Section de resultat  -->
+        <section id="result">
+            <h2>Votre diagnostic</h2>
+            <p>Veuillez sélectionner les options et cliquez sur diagnostiquer.</p>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+
+    <footer>
+        <p>&copy; 2024 Diagnostique des Plantes. Tout droit réservé.</p>
+    </footer>
+
+    <!-- Inclusion de jQuery et de la bibliothèque Select2 pour les fonctionnalités interactives -->
+
+    <!-- inclure la bibliothèque jQuery, qui simplifie la manipulation du DOM, les animations, les requêtes AJAX et bien d'autres aspects du développement web-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- inclure la bibliothèque JavaScript Select2, qui améliore les éléments <select> en leur ajoutant des fonctionnalités-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // initialiser la bibliothèque Select2 sur les éléments <select> ayant les IDs #plante et #organe
+            $('#plante, #organe').select2({
+                placeholder: "Choisir...",
+                allowClear: true,
+                width: '100%',
+                theme: 'classic'
+            });
+
+            // Définition d'un tableau d'objets où chaque objet représente une règle pour diagnostiquer une maladie
+            const reglesMaladies = [
+    {
+        cereales: ['blé'],
+        organe: ['grain'],
+        maladie: 'Maladie charbonneuse',
+        methodes: ['Rotation des cultures', 'Traitement des semences']
+    },
+    {
+        cereales: ['blé'],
+        organe: ['épi'],
+        maladie: 'Charbon du blé',
+        methodes: ['Désinfection des semences avec fongicide systémique']
+    },
+    {
+        cereales: ['orge'],
+        organe: ['épi'],
+        maladie: 'Charbon nu de l’orge',
+        methodes: ['Désinfection des semences avec fongicide systémique']
+    },
+    {
+        cereales: ['avoine'],
+        organe: ['panicule'],
+        maladie: 'Charbon nu de l’avoine',
+        methodes: ['Rotation des cultures', 'Traitements des semences']
+    },
+    {
+        cereales: ['orge'],
+        organe: ['épi'],
+        maladie: 'Couvert de l’orge',
+        methodes: ['Rotation des cultures', 'Traitements des semences']
+    },
+    {
+        cereales: ['maïs'],
+        organe: ['épi'],
+        maladie: 'Les fusarioses',
+        methodes: [
+            'Rotation des cultures',
+            'Traitements des semences',
+            'Bonne préparation du sol',
+            'Traitements fongicides en végétation'
+        ]
+    },
+    {
+        cereales: ['blé', 'orge', 'avoine'],
+        organe: ['tiges', 'grain'],
+        maladie: 'Les piétins',
+        methodes: ['Rotation des cultures', 'Traitements des semences']
+    },
+    {
+        cereales: ['blé'],
+        organe: ['racine' , 'épi'],
+        maladie: 'Piétin échaudage',
+        methodes: [
+            'Rotation des cultures',
+            'Désinfection des semences',
+            'Pas de traitements en végétation'
+        ]
+    }
+    ];
+
+
+            /**
+            * Compare deux tableaux pour vérifier s'ils contiennent les mêmes éléments.
+             * @param {Array} a - Premier tableau
+             * @param {Array} b - Deuxième tableau
+             * @returns {boolean} - Vrai si les tableaux contiennent les mêmes éléments
+             */
+            function arraysEqual(a, b) {
+                if (a.length !== b.length) return false; // Vérifie si les tableaux ont la même longueur
+
+                // Crée des copies triées des tableaux pour une comparaison ordonnée
+
+                //Comparer les sélections de l'utilisateur (céréales et organes) avec les données des règles définies dans le tableau reglesMaladies.
+
+                const sortedA = [...a].sort();
+                const sortedB = [...b].sort();
+                for (let i = 0; i < sortedA.length; i++) {
+                    if (sortedA[i] !== sortedB[i]) return false;
+                }
+                return true;
+            }
+
+            /**
+             * Récupère la maladie et les méthodes de lutte en fonction des céréales et des organes sélectionnés.
+             * @param {Array} cereales - Tableau des céréales sélectionnées.
+             * @param {Array} organes - Tableau des organes sélectionnés.
+             * @returns {Array} Tableau des résultats correspondants avec la maladie et les méthodes.
+             */
+            function obtenirMaladieEtMethodes(cereales, organes) { 
+
+                //Définir une liste de résultats pour stocker les maladies
+                const resultats = [];
+
+            
+                //Parcourir les régles
+                reglesMaladies.forEach(regle => {
+                    // Vérifier si les céréales sélectionnées correspondent exactement à celles de la règle
+                    const cerealesMatch = arraysEqual(cereales, regle.cereales);
+
+                    // Vérifier si les organes sélectionnés correspondent exactement à ceux de la règle
+                    const organesMatch = arraysEqual(organes, regle.organe);
+
+                    if (cerealesMatch && organesMatch) {
+                        resultats.push({
+                            maladie: regle.maladie,
+                            methodes: regle.methodes
+                        });
+                    }
+                });
+
+                return resultats;
+            }
+
+            // Événement de clic sur le bouton Diagnostiquer
+            $('#submit-btn').click(function() {
+                const cerealesSelectionnees = $('#plante').val() || [];
+                const organesSelectionnes = $('#organe').val() || [];
+
+                if (cerealesSelectionnees.length > 0 && organesSelectionnes.length > 0) {
+                    // Afficher le loader
+                    $('#result').html('<div class="loader"></div>');
+
+                    // Simuler un délai de traitement (par exemple, une requête réseau)
+                    setTimeout(() => {
+                        const resultats = obtenirMaladieEtMethodes(cerealesSelectionnees, organesSelectionnes);
+                        let htmlResultat = '';
+
+                        if (resultats.length > 0) {
+                            htmlResultat += `<h2>Diagnostic Terminé</h2>`;
+                            resultats.forEach((resultat, index) => {
+                                htmlResultat += `
+                                    <p><strong>Maladie ${index + 1} :</strong> ${resultat.maladie}</p>
+                                    <p><strong>Moyens de lutte :</strong> ${resultat.methodes.join(', ')}</p>
+                                    <hr>
+                                `;
+                            });
+                        } else {
+                            htmlResultat = `
+                                <h2>Aucune maladie trouvée</h2>
+                                <p>Veuillez vérifier vos sélections ou consulter un spécialiste.</p>
+                            `;
+                        }
+
+                        // Afficher les résultats
+                        $('#result').html(htmlResultat);
+                    }, 2000); // Délai de 2 secondes
+                } else {
+                    alert("Veuillez sélectionner au moins une céréale et un organe !");
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-nous</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9RK6gO7WYiinh5MbPYjD3ZIkjTr_GJ05CzA&s">
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f8f2;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(45deg, #388E3C, #66BB6A);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 4em;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Form Section */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-container h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            color: #388E3C;
+            font-weight: 700;
+        }
+
+        .form-container p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 1em;
+            border: 2px solid #66BB6A;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            transition: border 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #388E3C;
+            outline: none;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #66BB6A;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: 500;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-btn:hover {
+            background-color: #388E3C;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #388E3C;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 3em;
+            }
+
+            .form-container h2 {
+                font-size: 2.3em;
+            }
+
+            .form-container p {
+                font-size: 1em;
+            }
+
+            input, textarea {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Contactez-nous</h1>
+            <p>Nous sommes là pour répondre à toutes vos questions et demandes.</p>
+        </div>
+    </header>
+
+    <!-- Form Section -->
+    <div class="container">
+        <div class="form-container">
+            <h2>Envoyez-nous un message</h2>
+            <p>Nous serons ravis de répondre à vos questions. Veuillez remplir le formulaire ci-dessous pour nous faire part de vos besoins ou poser vos questions.</p>
+            <form action="#" method="POST">
+                <label for="name">Nom complet</label>
+                <input type="text" id="name" name="name" required placeholder="Entrez votre nom complet">
+
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email" name="email" required placeholder="Entrez votre adresse e-mail">
+
+                <label for="subject">Sujet</label>
+                <input type="text" id="subject" name="subject" required placeholder="Entrez le sujet de votre message">
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Décrivez votre besoin ou posez votre question"></textarea>
+
+                <button type="submit" class="submit-btn">Envoyer le message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Diagnostique des Plantes. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

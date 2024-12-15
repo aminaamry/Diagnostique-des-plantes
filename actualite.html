@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9RK6gO7WYiinh5MbPYjD3ZIkjTr_GJ05CzA&s">
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f8f2;
+            color: #2d6a4f;
+            line-height: 1.8;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(45deg, #388E3C, #66BB6A);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        header h1 {
+            font-size: 4em;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.4em;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .news-article {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .news-article::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #388E3C;
+            border-radius: 5px;
+        }
+
+        .news-article:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-article h2 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            color: #388E3C;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .news-article p {
+            font-size: 1.15em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .news-article a {
+            text-decoration: none;
+            color: #66BB6A;
+            font-weight: 500;
+            font-size: 1.1em;
+            margin-top: 20px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .news-article a:hover {
+            color: #388E3C;
+            transform: translateX(5px);
+        }
+
+        .news-article time {
+            display: block;
+            font-size: 0.95em;
+            color: #888;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #388E3C;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+        }
+
+        footer p {
+            font-size: 1.1em;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 1.1em;
+            }
+
+            .news-article h2 {
+                font-size: 2.2em;
+            }
+
+            .news-article p {
+                font-size: 1em;
+            }
+
+            footer p {
+                font-size: 1em;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Actualités</h1>
+            <p>Les dernières nouvelles et conseils pour prendre soin de vos plantes.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <article class="news-article">
+            <h2>Comment détecter les maladies courantes des plantes à la maison</h2>
+            <p>Les plantes d'intérieur sont des compagnons merveilleux, mais elles peuvent parfois souffrir de maladies invisibles à l'œil nu. Dans cet article, nous explorons les maladies courantes des plantes et comment vous pouvez les identifier tôt pour sauver vos plantes.</p>
+            <a href="#">Lire la suite</a>
+            <time datetime="2024-12-11">Publié le 11 décembre 2024</time>
+        </article>
+
+        <article class="news-article">
+            <h2>Nouvelles techniques pour lutter contre les maladies des céréales </h2>
+            <p>Découvrez les dernières méthodes de prévention et de traitement des maladies qui affectent les céréales. 
+                Apprenez-en plus sur les rotations des cultures et les semences résistantes.</p>
+            <a href="#">Lire la suite</a>
+            <time datetime="2024-12-10">Publié le 10 décembre 2024</time>
+        </article>
+
+        <article class="news-article">
+            <h2>Comment augmenter le rendement de vos céréales ?</h2>
+            <p>Astuces pratiques pour maximiser la production de blé, d'orge et d'autres céréales, tout en respectant l'environnement.</p>
+            <a href="#">Lire la suite</a>
+            <time datetime="2024-12-09">Publié le 9 décembre 2024</time>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Diagnostique des Plantes. Tous droits réservés.</p>
+    </footer>
+
+</body>
+
+</html>
